@@ -56,8 +56,8 @@ function Nav() {
           {[
             ["Story", "#story"],
             ["Journey", "#journey"],
-            ["Product", "#product"],
-            ["Brewing", "#brewing"],
+            ["Products", "#product"],
+            ["Pricing", "#pricing"],
             ["Contact", "#contact"],
           ].map(([l, h]) => (
             <a key={h} href={h} className="transition hover:text-[var(--gold)]">
