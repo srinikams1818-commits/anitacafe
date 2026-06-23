@@ -229,13 +229,24 @@ function Story() {
           </ul>
         </Reveal>
         <Reveal from="right" delay={150}>
-          <div className="relative">
+          <div className="relative grid grid-cols-2 gap-4">
             <div className="absolute -inset-6 rounded-[2rem] bg-gradient-gold opacity-20 blur-3xl" />
-            <img
-              src={coffeePack.url}
-              alt="Anita Cafe coffee in its origin landscape"
-              className="relative h-[520px] w-full rounded-[2rem] object-contain bg-[oklch(0.22_0.03_145)] p-8 shadow-luxe"
-            />
+            <div className="relative group">
+              <img
+                src={coffeePack.url}
+                alt="Anita Cafe premium filter coffee powder pack"
+                className="relative h-[480px] w-full rounded-[2rem] object-contain bg-[oklch(0.22_0.03_145)] p-6 shadow-luxe transition-transform duration-500 group-hover:-translate-y-2"
+              />
+              <p className="mt-3 text-center text-xs uppercase tracking-[0.3em] text-[var(--gold-soft)]">Coffee</p>
+            </div>
+            <div className="relative group mt-12">
+              <img
+                src={teaPack.url}
+                alt="Anita Cafe premium tea collection pack"
+                className="relative h-[480px] w-full rounded-[2rem] object-contain bg-[oklch(0.95_0.04_85)] p-6 shadow-luxe transition-transform duration-500 group-hover:-translate-y-2"
+              />
+              <p className="mt-3 text-center text-xs uppercase tracking-[0.3em] text-[var(--gold-soft)]">Tea</p>
+            </div>
           </div>
         </Reveal>
       </div>
