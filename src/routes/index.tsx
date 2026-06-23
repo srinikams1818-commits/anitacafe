@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroVideo from "@/assets/hero-coffee.mp4.asset.json";
+import heroVideo from "@/assets/hero-coffee-new.mp4.asset.json";
 import productPack from "@/assets/anita-pack.jpg.asset.json";
+import coffeePack from "@/assets/coffee-pack.png.asset.json";
+import teaPack from "@/assets/tea-pack.png.asset.json";
 import logo from "@/assets/anita-logo.png.asset.json";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { FloatingBeans } from "@/components/FloatingBeans";
@@ -10,12 +12,12 @@ import { CoffeeBean } from "@/components/CoffeeBean";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Anita Cafe — Premium Filter Coffee Powder" },
-      { name: "description", content: "From bean to brew. Authentic South Indian filter coffee, freshly ground. 100% pure coffee, no chicory." },
-      { property: "og:title", content: "Anita Cafe — Premium Filter Coffee Powder" },
-      { property: "og:description", content: "From bean to brew. Authentic South Indian filter coffee, freshly ground." },
-      { property: "og:image", content: productPack.url },
-      { name: "twitter:image", content: productPack.url },
+      { title: "Anita Cafe — Premium Filter Coffee & Tea Collection" },
+      { name: "description", content: "Crafted for every perfect sip. Premium filter coffee powders and tea blends, sourced, roasted and packed with care." },
+      { property: "og:title", content: "Anita Cafe — Premium Filter Coffee & Tea Collection" },
+      { property: "og:description", content: "Crafted for every perfect sip. Premium filter coffee powders and tea blends." },
+      { property: "og:image", content: coffeePack.url },
+      { name: "twitter:image", content: coffeePack.url },
     ],
   }),
   component: Index,
@@ -32,6 +34,7 @@ function Index() {
       <Product />
       <Brewing />
       <Testimonials />
+      <PriceList />
       <WhyUs />
       <Contact />
       <Footer />
