@@ -291,17 +291,61 @@ function Journey() {
 }
 
 /* ---------- PRODUCT ---------- */
-const COFFEE_PRODUCTS = [
-  "Home Blend",
-  "Commercial Blend",
-  "INS Elite",
-  "INS Premium",
-  "INS Strong",
-  "Arabica RCB",
-  "Aroma Gold RCB",
-  "Premium Gold RCB",
+type ProductInfo = {
+  name: string;
+  tagline: string;
+  description: string;
+  variants: string[];
+  features: string[];
+};
+
+const COFFEE_PRODUCTS: ProductInfo[] = [
+  {
+    name: "Home Blend",
+    tagline: "Everyday Filter Coffee",
+    description: "Perfect for everyday coffee lovers with a balanced aroma and smooth taste.",
+    variants: ["90% Coffee / 10% Chicory", "80% Coffee / 20% Chicory"],
+    features: ["Rich Aroma", "Smooth Taste", "Daily Use", "Premium Quality"],
+  },
+  {
+    name: "Commercial Blend",
+    tagline: "For Shops & Hotels",
+    description: "Designed for tea shops, hotels, restaurants, and commercial use.",
+    variants: ["70% Coffee / 30% Chicory", "60% Coffee / 40% Chicory"],
+    features: ["Strong Flavor", "Consistent Quality", "Cost Effective", "Commercial Use"],
+  },
+  {
+    name: "INS Elite",
+    tagline: "Premium Elite Blend",
+    description: "A premium blend crafted for a richer and stronger coffee experience.",
+    variants: ["90% Coffee / 10% Chicory"],
+    features: ["Premium Blend", "Rich Aroma", "Authentic Filter Coffee Taste", "Superior Quality"],
+  },
 ];
-const TEA_PRODUCTS = ["CTC Tea", "Ginger Tea", "Masala Tea"];
+
+const TEA_PRODUCTS: ProductInfo[] = [
+  {
+    name: "CTC Tea",
+    tagline: "Classic Strong Tea",
+    description: "A bold and brisk CTC tea — perfect for that strong morning kickstart.",
+    variants: ["Pure CTC Leaves"],
+    features: ["Strong Flavor", "Deep Color", "Daily Use", "Freshly Packed"],
+  },
+  {
+    name: "Ginger Tea",
+    tagline: "Warming & Refreshing",
+    description: "Premium tea infused with natural ginger for a soothing, refreshing cup.",
+    variants: ["Tea + Natural Ginger"],
+    features: ["Natural Ginger", "Refreshing Aroma", "Soothing", "Premium Quality"],
+  },
+  {
+    name: "Masala Tea",
+    tagline: "Aromatic Spice Blend",
+    description: "Traditional masala tea blended with aromatic spices for a rich, warming cup.",
+    variants: ["Tea + Premium Masala Spices"],
+    features: ["Aromatic Spices", "Rich Taste", "Authentic Recipe", "Freshly Packed"],
+  },
+];
 
 function Product() {
   const [tab, setTab] = useState<"coffee" | "tea">("coffee");
@@ -338,9 +382,12 @@ function Product() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((name, i) => (
-            <ProductCard key={`${tab}-${name}`} name={name} image={img} index={i} />
+        <p className="mt-6 text-center text-xs uppercase tracking-[0.3em] text-[var(--gold-soft)]">
+          Hover or tap a card to reveal blend details
+        </p>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((p, i) => (
+            <ProductCard key={`${tab}-${p.name}`} product={p} image={img} index={i} />
           ))}
         </div>
       </div>
@@ -348,37 +395,59 @@ function Product() {
   );
 }
 
-function ProductCard({ name, image, index }: { name: string; image: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+function ProductCard({ product, image, index }: { product: ProductInfo; image: string; index: number }) {
+  const [flipped, setFlipped] = useState(false);
   return (
     <div
-      style={{
-        animation: `fade-in 0.7s ease-out ${index * 80}ms backwards`,
-      }}
+      className="perspective-1200"
+      style={{ animation: `fade-in 0.7s ease-out ${index * 80}ms backwards` }}
     >
       <div
-        ref={ref}
-        onMouseMove={(e) => {
-          const r = ref.current!.getBoundingClientRect();
-          setTilt({
-            x: ((e.clientX - r.left) / r.width - 0.5) * 2,
-            y: ((e.clientY - r.top) / r.height - 0.5) * 2,
-          });
-        }}
-        onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-        className="group glass relative h-[340px] overflow-hidden rounded-3xl p-5 shadow-soft transition duration-300 hover:shadow-gold"
-        style={{
-          transform: `perspective(900px) rotateY(${tilt.x * 8}deg) rotateX(${-tilt.y * 8}deg) scale(${tilt.x || tilt.y ? 1.03 : 1})`,
-        }}
+        onMouseEnter={() => setFlipped(true)}
+        onMouseLeave={() => setFlipped(false)}
+        onClick={() => setFlipped((f) => !f)}
+        className="preserve-3d relative h-[460px] w-full cursor-pointer transition-transform duration-700 ease-out"
+        style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
-        <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-gradient-gold opacity-0 blur-3xl transition group-hover:opacity-30" />
-        <div className="grid h-[220px] place-items-center">
-          <img src={image} alt={name} className="max-h-full max-w-full object-contain drop-shadow-2xl transition duration-500 group-hover:scale-105" />
+        {/* FRONT */}
+        <div className="backface-hidden absolute inset-0 glass overflow-hidden rounded-3xl p-6 shadow-soft">
+          <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-gradient-gold opacity-20 blur-3xl" />
+          <div className="grid h-[300px] place-items-center">
+            <img
+              src={image}
+              alt={product.name}
+              className="max-h-full max-w-full object-contain drop-shadow-2xl"
+            />
+          </div>
+          <div className="mt-4 text-center">
+            <h3 className="font-display text-2xl text-shine">{product.name}</h3>
+            <p className="mt-1 text-xs uppercase tracking-[0.25em] text-[var(--gold-soft)]">{product.tagline}</p>
+          </div>
         </div>
-        <div className="mt-3 text-center">
-          <h3 className="font-display text-xl text-shine">{name}</h3>
-          <p className="mt-1 text-xs uppercase tracking-[0.25em] text-[var(--gold-soft)]">Premium Blend</p>
+        {/* BACK */}
+        <div className="backface-hidden rotate-y-180 absolute inset-0 overflow-hidden rounded-3xl p-6 shadow-gold"
+             style={{ background: "linear-gradient(160deg, oklch(0.22 0.04 145), oklch(0.18 0.03 50))" }}>
+          <h3 className="font-display text-2xl text-gradient-gold">{product.name}</h3>
+          <p className="mt-2 text-sm text-foreground/90">{product.description}</p>
+          <div className="mt-4">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--gold-soft)]">Available Variants</p>
+            <ul className="mt-2 space-y-1 text-sm">
+              {product.variants.map((v) => (
+                <li key={v} className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gradient-gold" />
+                  <span>{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
+            {product.features.map((f) => (
+              <li key={f} className="flex items-center gap-1.5">
+                <span className="text-[var(--gold)]">✓</span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
