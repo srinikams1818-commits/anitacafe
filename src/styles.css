@@ -216,6 +216,17 @@
     100% { opacity: 1; transform: translateY(0); }
   }
 
+  .perspective-1200 { perspective: 1200px; }
+  .preserve-3d { transform-style: preserve-3d; }
+  .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .rotate-y-180 { transform: rotateY(180deg); }
+
+  @keyframes btn-pop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); box-shadow: 0 0 0 8px oklch(0.82 0.14 85 / 0.18), var(--shadow-gold); }
+  }
+  .animate-pop { animation: btn-pop 2.2s ease-in-out infinite; }
+
   @keyframes shine {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }

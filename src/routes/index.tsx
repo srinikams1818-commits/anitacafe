@@ -4,6 +4,7 @@ import heroVideo from "@/assets/hero-coffee-new.mp4.asset.json";
 import productPack from "@/assets/anita-pack.jpg.asset.json";
 import coffeePack from "@/assets/coffee-pack.png.asset.json";
 import teaPack from "@/assets/tea-pack.png.asset.json";
+import storyImage from "@/assets/story-coffee-tea.png.asset.json";
 import logo from "@/assets/anita-logo.png.asset.json";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { FloatingBeans } from "@/components/FloatingBeans";
@@ -67,7 +68,7 @@ function Nav() {
         </nav>
         <a
           href="#contact"
-          className="rounded-full bg-gradient-gold px-4 py-2 text-sm font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-[1.03]"
+          className="animate-pop rounded-full bg-gradient-gold px-4 py-2 text-sm font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-[1.03]"
         >
           Order Now
         </a>
@@ -134,7 +135,7 @@ function Hero() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4 opacity-0 [animation:fade-in_1s_ease-out_4.2s_forwards]">
           <a
             href="#product"
-            className="rounded-full bg-gradient-gold px-7 py-3 font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-105"
+            className="animate-pop rounded-full bg-gradient-gold px-7 py-3 font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-105"
           >
             Explore Coffee
           </a>
@@ -209,44 +210,34 @@ function Story() {
         <Reveal from="left">
           <p className="mb-4 text-xs uppercase tracking-[0.4em] text-[var(--gold-soft)]">Our Story</p>
           <h2 className="font-display text-5xl leading-tight md:text-6xl">
-            Sourced, roasted &amp; <span className="text-gradient-gold">blended</span> with care.
+            The perfect cup, <span className="text-gradient-gold">freshly packed</span>.
           </h2>
           <p className="mt-6 text-muted-foreground">
-            At Anita Cafe, we carefully source, roast, and blend premium coffee and tea to deliver rich aroma, authentic taste, and unforgettable moments in every cup.
+            Experience the perfect cup of tea with Anita Cafe Premium Tea Powder. Carefully selected tea leaves deliver a rich aroma, deep color, and refreshing taste in every cup. Freshly packed to preserve quality and flavor, making it an ideal choice for your daily tea moments.
           </p>
           <ul className="mt-8 space-y-3 text-sm">
             {[
-              "Passion for authentic coffee",
-              "Carefully selected beans",
-              "Traditional roasting process",
-              "Freshly ground coffee powder",
+              "Rich Aroma",
+              "Strong & Refreshing Taste",
+              "Premium Quality Tea Leaves",
+              "Freshly Packed",
+              "Perfect for Daily Use",
             ].map((t) => (
               <li key={t} className="flex items-center gap-3">
-                <span className="h-1.5 w-6 rounded-full bg-gradient-gold" />
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-gold text-[oklch(0.18_0.025_140)] text-[11px] font-bold shadow-gold">✓</span>
                 <span>{t}</span>
               </li>
             ))}
           </ul>
         </Reveal>
         <Reveal from="right" delay={150}>
-          <div className="relative grid grid-cols-2 gap-4">
-            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-gold opacity-20 blur-3xl" />
-            <div className="relative group">
-              <img
-                src={coffeePack.url}
-                alt="Anita Cafe premium filter coffee powder pack"
-                className="relative h-[480px] w-full rounded-[2rem] object-contain bg-[oklch(0.22_0.03_145)] p-6 shadow-luxe transition-transform duration-500 group-hover:-translate-y-2"
-              />
-              <p className="mt-3 text-center text-xs uppercase tracking-[0.3em] text-[var(--gold-soft)]">Coffee</p>
-            </div>
-            <div className="relative group mt-12">
-              <img
-                src={teaPack.url}
-                alt="Anita Cafe premium tea collection pack"
-                className="relative h-[480px] w-full rounded-[2rem] object-contain bg-[oklch(0.95_0.04_85)] p-6 shadow-luxe transition-transform duration-500 group-hover:-translate-y-2"
-              />
-              <p className="mt-3 text-center text-xs uppercase tracking-[0.3em] text-[var(--gold-soft)]">Tea</p>
-            </div>
+          <div className="relative group">
+            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-gold opacity-25 blur-3xl" />
+            <img
+              src={storyImage.url}
+              alt="Anita Cafe premium coffee and tea collection in a sunrise plantation"
+              className="relative w-full rounded-[2rem] object-cover shadow-luxe transition-transform duration-700 group-hover:-translate-y-2 group-hover:scale-[1.02]"
+            />
           </div>
         </Reveal>
       </div>
@@ -300,17 +291,61 @@ function Journey() {
 }
 
 /* ---------- PRODUCT ---------- */
-const COFFEE_PRODUCTS = [
-  "Home Blend",
-  "Commercial Blend",
-  "INS Elite",
-  "INS Premium",
-  "INS Strong",
-  "Arabica RCB",
-  "Aroma Gold RCB",
-  "Premium Gold RCB",
+type ProductInfo = {
+  name: string;
+  tagline: string;
+  description: string;
+  variants: string[];
+  features: string[];
+};
+
+const COFFEE_PRODUCTS: ProductInfo[] = [
+  {
+    name: "Home Blend",
+    tagline: "Everyday Filter Coffee",
+    description: "Perfect for everyday coffee lovers with a balanced aroma and smooth taste.",
+    variants: ["90% Coffee / 10% Chicory", "80% Coffee / 20% Chicory"],
+    features: ["Rich Aroma", "Smooth Taste", "Daily Use", "Premium Quality"],
+  },
+  {
+    name: "Commercial Blend",
+    tagline: "For Shops & Hotels",
+    description: "Designed for tea shops, hotels, restaurants, and commercial use.",
+    variants: ["70% Coffee / 30% Chicory", "60% Coffee / 40% Chicory"],
+    features: ["Strong Flavor", "Consistent Quality", "Cost Effective", "Commercial Use"],
+  },
+  {
+    name: "INS Elite",
+    tagline: "Premium Elite Blend",
+    description: "A premium blend crafted for a richer and stronger coffee experience.",
+    variants: ["90% Coffee / 10% Chicory"],
+    features: ["Premium Blend", "Rich Aroma", "Authentic Filter Coffee Taste", "Superior Quality"],
+  },
 ];
-const TEA_PRODUCTS = ["CTC Tea", "Ginger Tea", "Masala Tea"];
+
+const TEA_PRODUCTS: ProductInfo[] = [
+  {
+    name: "CTC Tea",
+    tagline: "Classic Strong Tea",
+    description: "A bold and brisk CTC tea — perfect for that strong morning kickstart.",
+    variants: ["Pure CTC Leaves"],
+    features: ["Strong Flavor", "Deep Color", "Daily Use", "Freshly Packed"],
+  },
+  {
+    name: "Ginger Tea",
+    tagline: "Warming & Refreshing",
+    description: "Premium tea infused with natural ginger for a soothing, refreshing cup.",
+    variants: ["Tea + Natural Ginger"],
+    features: ["Natural Ginger", "Refreshing Aroma", "Soothing", "Premium Quality"],
+  },
+  {
+    name: "Masala Tea",
+    tagline: "Aromatic Spice Blend",
+    description: "Traditional masala tea blended with aromatic spices for a rich, warming cup.",
+    variants: ["Tea + Premium Masala Spices"],
+    features: ["Aromatic Spices", "Rich Taste", "Authentic Recipe", "Freshly Packed"],
+  },
+];
 
 function Product() {
   const [tab, setTab] = useState<"coffee" | "tea">("coffee");
@@ -347,9 +382,12 @@ function Product() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((name, i) => (
-            <ProductCard key={`${tab}-${name}`} name={name} image={img} index={i} />
+        <p className="mt-6 text-center text-xs uppercase tracking-[0.3em] text-[var(--gold-soft)]">
+          Hover or tap a card to reveal blend details
+        </p>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((p, i) => (
+            <ProductCard key={`${tab}-${p.name}`} product={p} image={img} index={i} />
           ))}
         </div>
       </div>
@@ -357,37 +395,59 @@ function Product() {
   );
 }
 
-function ProductCard({ name, image, index }: { name: string; image: string; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+function ProductCard({ product, image, index }: { product: ProductInfo; image: string; index: number }) {
+  const [flipped, setFlipped] = useState(false);
   return (
     <div
-      style={{
-        animation: `fade-in 0.7s ease-out ${index * 80}ms backwards`,
-      }}
+      className="perspective-1200"
+      style={{ animation: `fade-in 0.7s ease-out ${index * 80}ms backwards` }}
     >
       <div
-        ref={ref}
-        onMouseMove={(e) => {
-          const r = ref.current!.getBoundingClientRect();
-          setTilt({
-            x: ((e.clientX - r.left) / r.width - 0.5) * 2,
-            y: ((e.clientY - r.top) / r.height - 0.5) * 2,
-          });
-        }}
-        onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-        className="group glass relative h-[340px] overflow-hidden rounded-3xl p-5 shadow-soft transition duration-300 hover:shadow-gold"
-        style={{
-          transform: `perspective(900px) rotateY(${tilt.x * 8}deg) rotateX(${-tilt.y * 8}deg) scale(${tilt.x || tilt.y ? 1.03 : 1})`,
-        }}
+        onMouseEnter={() => setFlipped(true)}
+        onMouseLeave={() => setFlipped(false)}
+        onClick={() => setFlipped((f) => !f)}
+        className="preserve-3d relative h-[460px] w-full cursor-pointer transition-transform duration-700 ease-out"
+        style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
-        <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-gradient-gold opacity-0 blur-3xl transition group-hover:opacity-30" />
-        <div className="grid h-[220px] place-items-center">
-          <img src={image} alt={name} className="max-h-full max-w-full object-contain drop-shadow-2xl transition duration-500 group-hover:scale-105" />
+        {/* FRONT */}
+        <div className="backface-hidden absolute inset-0 glass overflow-hidden rounded-3xl p-6 shadow-soft">
+          <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-gradient-gold opacity-20 blur-3xl" />
+          <div className="grid h-[300px] place-items-center">
+            <img
+              src={image}
+              alt={product.name}
+              className="max-h-full max-w-full object-contain drop-shadow-2xl"
+            />
+          </div>
+          <div className="mt-4 text-center">
+            <h3 className="font-display text-2xl text-shine">{product.name}</h3>
+            <p className="mt-1 text-xs uppercase tracking-[0.25em] text-[var(--gold-soft)]">{product.tagline}</p>
+          </div>
         </div>
-        <div className="mt-3 text-center">
-          <h3 className="font-display text-xl text-shine">{name}</h3>
-          <p className="mt-1 text-xs uppercase tracking-[0.25em] text-[var(--gold-soft)]">Premium Blend</p>
+        {/* BACK */}
+        <div className="backface-hidden rotate-y-180 absolute inset-0 overflow-hidden rounded-3xl p-6 shadow-gold"
+             style={{ background: "linear-gradient(160deg, oklch(0.22 0.04 145), oklch(0.18 0.03 50))" }}>
+          <h3 className="font-display text-2xl text-gradient-gold">{product.name}</h3>
+          <p className="mt-2 text-sm text-foreground/90">{product.description}</p>
+          <div className="mt-4">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--gold-soft)]">Available Variants</p>
+            <ul className="mt-2 space-y-1 text-sm">
+              {product.variants.map((v) => (
+                <li key={v} className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gradient-gold" />
+                  <span>{v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <ul className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
+            {product.features.map((f) => (
+              <li key={f} className="flex items-center gap-1.5">
+                <span className="text-[var(--gold)]">✓</span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -540,11 +600,6 @@ const COFFEE_PRICES: [string, string, string, string][] = [
   ["Home Blend", "₹249", "₹449", "₹899"],
   ["Commercial Blend", "₹199", "₹399", "₹749"],
   ["INS Elite", "₹229", "₹449", "₹849"],
-  ["INS Premium", "₹229", "₹449", "₹849"],
-  ["INS Strong", "₹219", "₹429", "₹799"],
-  ["Arabica RCB", "₹329", "₹649", "₹1199"],
-  ["Aroma Gold RCB", "₹299", "₹599", "₹1099"],
-  ["Premium Gold RCB", "₹279", "₹549", "₹999"],
 ];
 const TEA_PRICES: [string, string, string, string][] = [
   ["CTC Tea", "₹149", "₹249", "₹449"],
@@ -704,15 +759,15 @@ function Contact() {
 
         <div className="mt-12 grid gap-4 md:grid-cols-2">
           <ContactCard label="Phone" value="+91 78452 23599" href="tel:+917845223599" />
-          <ContactCard label="Email" value="anneyanitha@gmail.com" href="mailto:anneyanitha@gmail.com" />
+          <ContactCard label="Email" value="anitacafecoffee@gmail.com" href="mailto:anitacafecoffee@gmail.com" />
         </div>
 
         <Reveal delay={200}>
           <a
-            href="https://wa.me/917845223599"
+            href="https://wa.me/917845223599?text=Hi%20Anita%20Cafe%2C%20I%27d%20like%20to%20place%20an%20order%20for%20your%20premium%20coffee%20%2F%20tea."
             target="_blank"
             rel="noreferrer"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-105"
+            className="animate-pop mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-105"
           >
             <span className="h-2 w-2 rounded-full bg-[oklch(0.18_0.025_140)]" />
             Chat on WhatsApp
@@ -768,11 +823,11 @@ function FloatingButtons() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       <a
-        href="https://wa.me/917845223599"
+        href="https://wa.me/917845223599?text=Hi%20Anita%20Cafe%2C%20I%27d%20like%20to%20place%20an%20order%20for%20your%20premium%20coffee%20%2F%20tea."
         target="_blank"
         rel="noreferrer"
         aria-label="Chat on WhatsApp"
-        className="grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-luxe transition hover:scale-110"
+        className="animate-pop grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-luxe transition hover:scale-110"
       >
         <svg viewBox="0 0 32 32" className="h-7 w-7 fill-current" aria-hidden="true">
           <path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2.1 7.8L.5 31.5l7.9-2c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.2c-2.4 0-4.8-.7-6.8-1.9l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.7 20.6 3 18.3 3 16 3 8.8 8.8 3 16 3s13 5.8 13 13-5.8 12.7-13 12.7zm7.3-9.5c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2s-1 1.3-1.3 1.6c-.2.2-.5.3-.9.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.2-.4.3-.6.1-.2.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5s-1.3 1.3-1.3 3.2 1.4 3.7 1.6 4 2.7 4.1 6.5 5.7c.9.4 1.6.6 2.2.8.9.3 1.8.2 2.4.1.7-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.3-.8-.5z"/>
