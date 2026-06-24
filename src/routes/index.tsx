@@ -68,7 +68,7 @@ function Nav() {
         </nav>
         <a
           href="#contact"
-          className="rounded-full bg-gradient-gold px-4 py-2 text-sm font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-[1.03]"
+          className="animate-pop rounded-full bg-gradient-gold px-4 py-2 text-sm font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-[1.03]"
         >
           Order Now
         </a>
@@ -135,7 +135,7 @@ function Hero() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4 opacity-0 [animation:fade-in_1s_ease-out_4.2s_forwards]">
           <a
             href="#product"
-            className="rounded-full bg-gradient-gold px-7 py-3 font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-105"
+            className="animate-pop rounded-full bg-gradient-gold px-7 py-3 font-medium text-[oklch(0.18_0.025_140)] shadow-gold transition hover:scale-105"
           >
             Explore Coffee
           </a>
