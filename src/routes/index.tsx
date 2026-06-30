@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import heroVideo from "@/assets/hero-coffee-new.mp4.asset.json";
-import productPack from "@/assets/anita-pack.jpg.asset.json";
-import coffeePack from "@/assets/coffee-pack.png.asset.json";
-import teaPack from "@/assets/tea-pack.png.asset.json";
-import storyImage from "@/assets/story-coffee-tea.png.asset.json";
-import logo from "@/assets/anita-logo.png.asset.json";
+import heroVideo from "@/assets/hero-coffee-new.mp4";
+import productPack from "@/assets/anita-pack.jpeg";
+import coffeePack from "@/assets/coffee-pack.png";
+import teaPack from "@/assets/story-coffee-tea.png";
+import storyImage from "@/assets/story-coffee-tea.png";
+import logo from "@/assets/anita-logo.png";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { FloatingBeans } from "@/components/FloatingBeans";
 import { CoffeeBean } from "@/components/CoffeeBean";
@@ -17,8 +17,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Crafted for every perfect sip. Premium filter coffee powders and tea blends, sourced, roasted and packed with care." },
       { property: "og:title", content: "Anita Cafe — Premium Filter Coffee & Tea Collection" },
       { property: "og:description", content: "Crafted for every perfect sip. Premium filter coffee powders and tea blends." },
-      { property: "og:image", content: coffeePack.url },
-      { name: "twitter:image", content: coffeePack.url },
+      { property: "og:image", content: coffeePack },
+      { name: "twitter:image", content: coffeePack },
     ],
   }),
   component: Index,
@@ -50,7 +50,7 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto mt-4 flex w-[min(1200px,92%)] items-center justify-between rounded-full glass px-5 py-3">
         <a href="#hero" className="flex items-center gap-2">
-          <img src={logo.url} alt="Anita Cafe" className="h-10 w-auto" />
+          <img src={logo} alt="Anita Cafe" className="h-10 w-auto" />
           <span className="font-display text-xl tracking-wide text-shine">Anita Cafe</span>
         </a>
         <nav className="hidden gap-7 text-sm text-muted-foreground md:flex">
@@ -97,7 +97,7 @@ function Hero() {
       {/* Layer 1: video */}
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-55"
-        src={heroVideo.url}
+        src={heroVideo}
         autoPlay
         muted
         loop
@@ -234,7 +234,7 @@ function Story() {
           <div className="relative group">
             <div className="absolute -inset-6 rounded-[2rem] bg-gradient-gold opacity-25 blur-3xl" />
             <img
-              src={storyImage.url}
+              src={storyImage}
               alt="Anita Cafe premium coffee and tea collection in a sunrise plantation"
               className="relative w-full rounded-[2rem] object-cover shadow-luxe transition-transform duration-700 group-hover:-translate-y-2 group-hover:scale-[1.02]"
             />
@@ -350,7 +350,7 @@ const TEA_PRODUCTS: ProductInfo[] = [
 function Product() {
   const [tab, setTab] = useState<"coffee" | "tea">("coffee");
   const items = tab === "coffee" ? COFFEE_PRODUCTS : TEA_PRODUCTS;
-  const img = tab === "coffee" ? coffeePack.url : teaPack.url;
+  const img = tab === "coffee" ? coffeePack : teaPack;
   return (
     <section id="product" className="relative overflow-hidden py-32">
       <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.025_145)] to-[oklch(0.18_0.03_50)]" />
@@ -738,7 +738,7 @@ function Contact() {
       <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.03_50)] to-[oklch(0.1_0.02_140)]" />
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-25"
-        src={heroVideo.url}
+        src={heroVideo}
         autoPlay
         muted
         loop
@@ -794,7 +794,7 @@ function Footer() {
     <footer className="relative border-t border-border bg-[oklch(0.1_0.02_140)] py-12">
       <div className="mx-auto flex w-[min(1200px,92%)] flex-col items-center justify-between gap-6 md:flex-row">
         <a href="#hero" className="flex items-center gap-2">
-          <img src={logo.url} alt="Anita Cafe" className="h-10 w-auto" />
+          <img src={logo} alt="Anita Cafe" className="h-10 w-auto" />
           <span className="font-display text-xl text-shine">Anita Cafe</span>
         </a>
         <nav className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
