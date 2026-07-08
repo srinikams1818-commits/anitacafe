@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import heroVideo from "@/assets/hero-coffee-new.mp4";
 import productPack from "@/assets/anita-pack.jpeg";
 import coffeePack from "@/assets/coffee-pack.png";
-import teaPack from "@/assets/story-coffee-tea.png";
+import teaPack from "@/assets/tea-pack.png";
 import storyImage from "@/assets/story-coffee-tea.png";
 import logo from "@/assets/anita-logo.png";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -17,8 +17,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Crafted for every perfect sip. Premium filter coffee powders and tea blends, sourced, roasted and packed with care." },
       { property: "og:title", content: "Anita Cafe — Premium Filter Coffee & Tea Collection" },
       { property: "og:description", content: "Crafted for every perfect sip. Premium filter coffee powders and tea blends." },
-      { property: "og:image", content: coffeePack },
-      { name: "twitter:image", content: coffeePack },
+      { property: "og:image", content: teaPack },
+      { name: "twitter:image", content: teaPack },
     ],
   }),
   component: Index,
